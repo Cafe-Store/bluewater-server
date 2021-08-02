@@ -10,8 +10,8 @@ class Router {
     @Bean
     fun shopRoutes(shopHandler: ShopHandler) = coRouter {
         "/shops".nest {
-            GET("", )
-            GET("/rank", shopHandler::fetchRankingShops)
+            GET("/", )
+            GET("/ranking", shopHandler::getRankingShops)
         }
     }
 
