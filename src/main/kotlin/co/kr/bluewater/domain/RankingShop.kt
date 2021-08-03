@@ -2,8 +2,19 @@ package co.kr.bluewater.domain
 
 data class RankingShop(
     val shopId: ShopId,
-    val rank: Rank,
+    val rank: Rank
 
 )
+
 class ShopId
-class Rank
+
+class Rank(
+    private var value: Double = 0.0
+) : Comparable<Rank> {
+
+
+
+    override fun compareTo(other: Rank): Int {
+        return this.value.compareTo(other.value)
+    }
+}
