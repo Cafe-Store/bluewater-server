@@ -1,0 +1,25 @@
+package co.kr.bluewater.app
+
+import co.kr.bluewater.domain.RankingShopsQueryParam
+import co.kr.bluewater.domain.User
+import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.BodyExtractor
+import org.springframework.web.reactive.function.server.*
+import org.springframework.web.reactive.function.server.ServerResponse.ok
+
+@Component
+class ShopHandler(
+    private val rankingShopsQueryExecutor: RankingShopsQueryExecutor
+) {
+
+    suspend fun fetchRankingShops(serverRequest: ServerRequest): ServerResponse {
+        val user = serverRequest.awaitPrincipal() as User
+
+        return rankingShopsQueryExecutor.findAllRankingShopsByLocation(
+            RankingShopsQueryParam(user = user)
+        )
+            .let {
+                ok().bodyValueAndAwait(it)
+            }
+    }
+}
