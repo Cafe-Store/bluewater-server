@@ -1,6 +1,6 @@
 FROM adoptopenjdk:latest
 LABEL MAINTAINER="walkingError"
-COPY /home/runner/work/bluewater-server/build/libs/*.jar app.jar
+RUN ./gradlew clean build
+COPY /home/app/build/libs/bluewater-server-0.0.1-SNAPSHOT.jar /usr/local/lib/app.jar
 EXPOSE 8080
-ENV JAVA_OPTS=""
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/app.jar"]
