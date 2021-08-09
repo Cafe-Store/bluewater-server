@@ -64,7 +64,7 @@
       },
       "dockerRegistryUsername": {
         "type": "String",
-        "value": ""
+        "value": "bluewater"
       },
       "dockerRegistryPassword": {
         "type": "SecureString"
