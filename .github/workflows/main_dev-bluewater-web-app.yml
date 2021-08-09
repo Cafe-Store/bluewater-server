@@ -28,10 +28,11 @@ jobs:
       run: ./gradlew clean build
 
     - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: ${{ secrets.AzureAppService_ContainerUsername_f9ae62a81a9a4349b6f87f014387f41a }}/bluewater
         registry: docker.io
+        tags: ${{ github.sha }}
         username: ${{ secrets.AzureAppService_ContainerUsername_f9ae62a81a9a4349b6f87f014387f41a }}
         password: ${{ secrets.AzureAppService_ContainerPassword_5cc59f1ec3bb42dba59ba1808064062f }}
 
@@ -50,4 +51,4 @@ jobs:
         app-name: 'dev-bluewater-web-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_1b260074f41347b08b3c38af181a1aaf }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f9ae62a81a9a4349b6f87f014387f41a }}/openjdk:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f9ae62a81a9a4349b6f87f014387f41a }}/bluewater:${{ github.sha }}'
