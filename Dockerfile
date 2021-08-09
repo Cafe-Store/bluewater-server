@@ -1,6 +1,5 @@
-FROM adoptopenjdk:latest
+FROM openjdk:8-jre-alpine
 
-LABEL MAINTAINER="walkingError"
 
 EXPOSE 8080
 
