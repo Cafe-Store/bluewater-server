@@ -1,4 +1,5 @@
 FROM adoptopenjdk:latest
 LABEL MAINTAINER="walkingError"
-
-ENTRYPOINT exec java -jar bluewater-server-0.0.1-SNAPSHOT.jar
+ADD /build/libs/bluewater-server-0.0.1-SNAPSHOT.jar app.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT ["java", "-jar", "/app.jar"]
