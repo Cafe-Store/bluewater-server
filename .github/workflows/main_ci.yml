@@ -1,9 +1,9 @@
 # workflow for CI
-name: ci build workflow
+name: CI build workflow
 
 on:
   pull_request:
-   - main
+    branches: [ main ]
 
 jobs:
   build:
