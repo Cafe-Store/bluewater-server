@@ -1,8 +1,6 @@
 package co.kr.bluewater.app
 
-import co.kr.bluewater.domain.RankingShop
-import co.kr.bluewater.domain.RankingShopsQueryParam
-import co.kr.bluewater.domain.RankingShopsRepository
+import co.kr.bluewater.domain.*
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -28,7 +26,11 @@ class RankingShopsQueryBeanConfig {
     fun mockRankingShopsRepository(): RankingShopsRepository {
         return object : RankingShopsRepository {
             override suspend fun findAllRankingShops(param: RankingShopsQueryParam): List<RankingShop> {
-                return emptyList()
+                return listOf(
+                    RankingShop(ShopId(), Rank(4.9)),
+                    RankingShop(ShopId(), Rank(5.0)),
+                    RankingShop(ShopId(), Rank(3.7))
+                )
             }
         }
     }

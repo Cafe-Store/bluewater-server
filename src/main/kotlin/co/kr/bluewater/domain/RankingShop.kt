@@ -8,8 +8,8 @@ data class RankingShop(
 
 class ShopId
 
-class Rank(
-    private var value: Double = 0.0
+data class Rank(
+    var value: Double = 0.0
 ) : Comparable<Rank> {
 
 
