@@ -1,5 +1,6 @@
 package co.kr.bluewater.app
 
+import co.kr.bluewater.domain.Location
 import co.kr.bluewater.domain.RankingShopsQueryParam
 import co.kr.bluewater.domain.User
 import org.springframework.stereotype.Component
@@ -12,7 +13,9 @@ class ShopHandler(
 ) {
 
     suspend fun getRankingShops(serverRequest: ServerRequest): ServerResponse {
-        val user = serverRequest.awaitPrincipal() as User
+        val user = serverRequest.awaitPrincipal()?.let {
+            it as User
+        }?:User(location = Location("12345"))
 
         return rankingShopsQueryExecutor.execute(
             RankingShopsQueryParam(user = user)
