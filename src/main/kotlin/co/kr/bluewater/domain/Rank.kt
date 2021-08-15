@@ -1,14 +1,9 @@
 package co.kr.bluewater.domain
 
 data class Rank(
-    var value: Double = 0.0,
-    val count: Long
+    val value: Double = ((4 until 10).random()/2).toDouble(),
+    val count: Long = (100..500).random().toLong()
 ) : Comparable<Rank> {
-
-    constructor(value: Double): this(
-        value = value,
-        count = 500
-    )
 
 
     override fun compareTo(other: Rank): Int {

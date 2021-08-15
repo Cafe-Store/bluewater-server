@@ -1,5 +1,6 @@
 package co.kr.bluewater.app.ext
 
+import co.kr.bluewater.app.main.MainShopQueryParam
 import co.kr.bluewater.app.ranking.RankingShopQueryParam
 import co.kr.bluewater.domain.Location
 import org.springframework.http.HttpCookie
@@ -19,3 +20,6 @@ var ServerRequest.location: Location?
 
 val ServerRequest.rankingShopParam: RankingShopQueryParam
     get() = RankingShopQueryParam(this.location)
+
+val ServerRequest.mainShopParam: MainShopQueryParam
+    get() = MainShopQueryParam(this.location)
