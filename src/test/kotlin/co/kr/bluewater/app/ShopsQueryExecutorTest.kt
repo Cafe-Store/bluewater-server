@@ -1,10 +1,12 @@
 package co.kr.bluewater.app
 
+import co.kr.bluewater.app.main.MainShopQueryParam
 import co.kr.bluewater.app.ranking.RankingShopQueryExecutor
 import co.kr.bluewater.app.ranking.RankingShopQueryParam
 import co.kr.bluewater.domain.*
 import co.kr.bluewater.domain.shop.Shop
 import co.kr.bluewater.domain.shop.ShopRepository
+import co.kr.bluewater.domain.shop.shopFixture
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
 
@@ -42,10 +44,19 @@ internal class ShopsQueryExecutorTest {
         assert(sorted == actual)
     }
 
+    @Test
+    fun `test`() {
+        println(shopFixture().toString())
+    }
+
 }
 
 class ShopRepositoryEmptyStub : ShopRepository {
     override suspend fun findAllRankingShops(param: RankingShopQueryParam): List<Shop> {
+        return emptyList()
+    }
+
+    override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
         return emptyList()
     }
 }
@@ -53,9 +64,17 @@ class ShopRepositoryEmptyStub : ShopRepository {
 class ShopRepositoryStub : ShopRepository {
     override suspend fun findAllRankingShops(param: RankingShopQueryParam): List<Shop> {
         return listOf(
-            Shop(shopId = "1234", name = "나이키 정자역점", rank = Rank(4.9), products = mutableSetOf()),
-            Shop(shopId = "1235", name = "아디다스 미금점", rank = Rank(4.6), products = mutableSetOf()),
-            Shop(shopId = "1236", name = "푸마 판교점", rank = Rank(5.0), products = mutableSetOf())
+            shopFixture(),
+            shopFixture(),
+            shopFixture()
+        )
+    }
+
+    override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
+        return listOf(
+            shopFixture(),
+            shopFixture(),
+            shopFixture()
         )
     }
 }

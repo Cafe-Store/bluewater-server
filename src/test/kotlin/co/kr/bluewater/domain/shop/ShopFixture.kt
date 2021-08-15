@@ -6,8 +6,8 @@ import java.util.*
 fun shopFixture(): Shop {
     return Shop(
         shopId = UUID.randomUUID().toString().replace("-", ""),
-        name = "",
-        rank = Rank(4.1),
+        name = UUID.randomUUID().toString().replace("-", ""),
+        rank = Rank(),
         products = mutableSetOf(
             UUID.randomUUID().toString().replace("-", "")
         )
