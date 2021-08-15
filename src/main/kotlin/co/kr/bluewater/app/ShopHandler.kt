@@ -1,8 +1,7 @@
 package co.kr.bluewater.app
 
-import co.kr.bluewater.app.ranking.RankingShopQueryParam
+import co.kr.bluewater.app.ext.rankingShopParam
 import co.kr.bluewater.app.ranking.RankingShopQueryExecutor
-import co.kr.bluewater.domain.Location
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -16,7 +15,7 @@ class ShopHandler(
 
     suspend fun getRankingShops(serverRequest: ServerRequest): ServerResponse {
         return rankingShopQueryExecutor.execute(
-            RankingShopQueryParam(location = Location("12345"))
+            serverRequest.rankingShopParam
         )
             .let {
                 ok().bodyValueAndAwait(it)

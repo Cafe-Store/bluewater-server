@@ -4,5 +4,5 @@ import co.kr.bluewater.domain.Location
 
 
 data class RankingShopQueryParam(
-    val location: Location
+    val location: Location?
 )
