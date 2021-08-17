@@ -1,12 +1,8 @@
 package co.kr.bluewater.app
 
-import co.kr.bluewater.app.main.MainShopQueryParam
 import co.kr.bluewater.app.ranking.RankingShopQueryExecutor
-import co.kr.bluewater.app.ranking.RankingShopQueryParam
 import co.kr.bluewater.domain.*
-import co.kr.bluewater.domain.shop.Shop
-import co.kr.bluewater.domain.shop.ShopRepository
-import co.kr.bluewater.domain.shop.shopFixture
+import co.kr.bluewater.domain.shop.*
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
 

@@ -1,11 +1,9 @@
 package co.kr.bluewater.app.ext
 
-import co.kr.bluewater.app.main.MainShopQueryParam
-import co.kr.bluewater.app.ranking.RankingShopQueryParam
 import co.kr.bluewater.domain.Location
+import co.kr.bluewater.domain.shop.MainShopQueryParam
+import co.kr.bluewater.domain.shop.RankingShopQueryParam
 import org.springframework.http.HttpCookie
-import org.springframework.web.reactive.function.BodyExtractor
-import org.springframework.web.reactive.function.BodyExtractors
 import org.springframework.web.reactive.function.server.ServerRequest
 
 

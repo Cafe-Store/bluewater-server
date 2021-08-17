@@ -1,6 +1,7 @@
 package co.kr.bluewater.app.ranking
 
-import co.kr.bluewater.app.main.MainShopQueryParam
+import co.kr.bluewater.domain.shop.MainShopQueryParam
+import co.kr.bluewater.domain.shop.RankingShopQueryParam
 import co.kr.bluewater.domain.shop.Shop
 import co.kr.bluewater.domain.shop.ShopRepository
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
