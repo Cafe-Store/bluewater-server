@@ -1,24 +1,26 @@
 package co.kr.bluewater.domain.shop
 
+import co.kr.bluewater.domain.Photo
 import co.kr.bluewater.domain.Rank
 import java.util.*
 
 /**
  * Core domain model
  */
-data class Shop(
+class Shop(
     val shopId: String,
     val name: String,
     val rank: Rank,
     val products: MutableSet<String>,
-    val imageUrl: String
+    val photo: Photo,
+    val owner: Owner? = null
 ) {
     constructor(shopId: String): this(
         shopId = shopId,
         name = UUID.randomUUID().toString().substring(0,15),
         rank = Rank(),
         products = mutableSetOf(),
-        imageUrl = "https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg"
+        photo = Photo("https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg")
 
     )
 
@@ -27,7 +29,7 @@ data class Shop(
         name = name,
         rank = rank,
         products = products,
-        imageUrl = "https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg"
+        photo = Photo("https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg")
     )
 
 }

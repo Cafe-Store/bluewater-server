@@ -1,5 +1,6 @@
 package co.kr.bluewater.app.main
 
+import co.kr.bluewater.domain.shop.MainShopQueryParam
 import co.kr.bluewater.domain.shop.Shop
 import co.kr.bluewater.domain.shop.ShopRepository
 import org.springframework.stereotype.Component
