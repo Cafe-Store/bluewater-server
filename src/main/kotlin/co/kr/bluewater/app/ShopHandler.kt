@@ -33,4 +33,13 @@ class ShopHandler(
                 ok().bodyValueAndAwait(it)
             }
     }
+
+    suspend fun getShopDetail(serverRequest: ServerRequest): ServerResponse {
+        return mainShopQueryExecutor.execute(
+            serverRequest.mainShopParam
+        )
+            .let {
+                ok().bodyValueAndAwait(it.first())
+            }
+    }
 }
