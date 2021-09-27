@@ -33,14 +33,16 @@ class Router {
     @RouterOperations(
         RouterOperation(path = "/shops", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getMainShops"),
         RouterOperation(path = "/shops/ranking", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getRankingShops"),
+        RouterOperation(path = "/shops/category", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getCategoryShops"),
         RouterOperation(path = "/shops/{id}", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getShopDetail")
     )
     @Bean
     fun shopRoutes(shopHandler: ShopHandler) = coRouter {
         "/shops".nest {
             GET("", shopHandler::getMainShops)
-            GET("/{id}", shopHandler::getShopDetail)
             GET("/ranking", shopHandler::getRankingShops)
+            GET("/category", shopHandler::getCategoryShops)
+            GET("/{id}", shopHandler::getShopDetail)
         }
     }
 }

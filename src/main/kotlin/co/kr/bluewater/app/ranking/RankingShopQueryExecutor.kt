@@ -1,9 +1,6 @@
 package co.kr.bluewater.app.ranking
 
-import co.kr.bluewater.domain.shop.MainShopQueryParam
-import co.kr.bluewater.domain.shop.RankingShopQueryParam
-import co.kr.bluewater.domain.shop.Shop
-import co.kr.bluewater.domain.shop.ShopRepository
+import co.kr.bluewater.domain.shop.*
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -35,6 +32,12 @@ class RankingShopQueryBeanConfig {
             }
 
             override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
+                return (1..30).map {
+                    Shop(shopId = Math.random().toString())
+                }.toList()
+            }
+
+            override suspend fun findAllCategoryShops(param: CategoryShopQueryParam): List<Shop> {
                 return (1..30).map {
                     Shop(shopId = Math.random().toString())
                 }.toList()

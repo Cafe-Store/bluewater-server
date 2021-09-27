@@ -6,7 +6,7 @@ import co.kr.bluewater.domain.shop.*
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
 
-internal class ShopsQueryExecutorTest {
+internal class RankingShopQueryExecutorTest {
 
     @Test
     fun `랭킹매장이 없는 경우 빈 컬렉션을 반환한다`() = runBlockingTest {
@@ -40,11 +40,6 @@ internal class ShopsQueryExecutorTest {
         assert(sorted == actual)
     }
 
-    @Test
-    fun `test`() {
-        println(shopFixture().toString())
-    }
-
 }
 
 class ShopRepositoryEmptyStub : ShopRepository {
@@ -53,6 +48,10 @@ class ShopRepositoryEmptyStub : ShopRepository {
     }
 
     override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
+        return emptyList()
+    }
+
+    override suspend fun findAllCategoryShops(param: CategoryShopQueryParam): List<Shop> {
         return emptyList()
     }
 }
@@ -67,6 +66,14 @@ class ShopRepositoryStub : ShopRepository {
     }
 
     override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
+        return listOf(
+            shopFixture(),
+            shopFixture(),
+            shopFixture()
+        )
+    }
+
+    override suspend fun findAllCategoryShops(param: CategoryShopQueryParam): List<Shop> {
         return listOf(
             shopFixture(),
             shopFixture(),
