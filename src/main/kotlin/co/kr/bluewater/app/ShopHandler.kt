@@ -1,5 +1,7 @@
 package co.kr.bluewater.app
 
+import co.kr.bluewater.app.category.CategoryShopQueryExecutor
+import co.kr.bluewater.app.ext.categoryShopQueryParam
 import co.kr.bluewater.app.ext.mainShopParam
 import co.kr.bluewater.app.ext.rankingShopParam
 import co.kr.bluewater.app.main.MainShopQueryExecutor
@@ -13,21 +15,13 @@ import org.springframework.web.reactive.function.server.bodyValueAndAwait
 @Component
 class ShopHandler(
     private val rankingShopQueryExecutor: RankingShopQueryExecutor,
-    private val mainShopQueryExecutor: MainShopQueryExecutor
+    private val mainShopQueryExecutor: MainShopQueryExecutor,
+    private val categoryShopQueryExecutor: CategoryShopQueryExecutor
 ) {
 
     suspend fun getMainShops(serverRequest: ServerRequest): ServerResponse {
         return mainShopQueryExecutor.execute(
             serverRequest.mainShopParam
-        )
-            .let {
-                ok().bodyValueAndAwait(it)
-            }
-    }
-
-    suspend fun getRankingShops(serverRequest: ServerRequest): ServerResponse {
-        return rankingShopQueryExecutor.execute(
-            serverRequest.rankingShopParam
         )
             .let {
                 ok().bodyValueAndAwait(it)
@@ -40,6 +34,24 @@ class ShopHandler(
         )
             .let {
                 ok().bodyValueAndAwait(it.first())
+            }
+    }
+
+    suspend fun getRankingShops(serverRequest: ServerRequest): ServerResponse {
+        return rankingShopQueryExecutor.execute(
+            serverRequest.rankingShopParam
+        )
+            .let {
+                ok().bodyValueAndAwait(it)
+            }
+    }
+
+    suspend fun getCategoryShops(serverRequest: ServerRequest): ServerResponse {
+        return categoryShopQueryExecutor.execute(
+            serverRequest.categoryShopQueryParam
+        )
+            .let {
+                ok().bodyValueAndAwait(it)
             }
     }
 }
