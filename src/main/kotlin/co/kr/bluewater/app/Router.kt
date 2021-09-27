@@ -20,6 +20,17 @@ class Router {
     }
     @FlowPreview
     @RouterOperations(
+        RouterOperation(path = "/categories", method = arrayOf(RequestMethod.GET), beanClass = CategoryHandler::class, beanMethod = "getCategories"),
+    )
+    @Bean
+    fun categories(categoryHandler: CategoryHandler) = coRouter {
+        "/categories".nest {
+            GET("", categoryHandler::getCategories)
+        }
+    }
+
+    @FlowPreview
+    @RouterOperations(
         RouterOperation(path = "/shops", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getMainShops"),
         RouterOperation(path = "/shops/ranking", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getRankingShops"),
         RouterOperation(path = "/shops/{id}", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getShopDetail")
@@ -32,5 +43,4 @@ class Router {
             GET("/ranking", shopHandler::getRankingShops)
         }
     }
-
 }
