@@ -1,6 +1,6 @@
 package co.kr.bluewater.domain.shop
 
-import co.kr.bluewater.domain.Category
+import co.kr.bluewater.domain.category.Category
 import co.kr.bluewater.domain.Photo
 import co.kr.bluewater.domain.Rank
 import java.util.*

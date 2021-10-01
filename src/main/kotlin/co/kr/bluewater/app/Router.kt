@@ -34,7 +34,8 @@ class Router {
         RouterOperation(path = "/shops", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getMainShops"),
         RouterOperation(path = "/shops/ranking", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getRankingShops"),
         RouterOperation(path = "/shops/category", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getCategoryShops"),
-        RouterOperation(path = "/shops/{id}", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getShopDetail")
+        RouterOperation(path = "/shops/{id}", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getShopDetail"),
+        RouterOperation(path = "/shops/{id}/products", method = arrayOf(RequestMethod.GET), beanClass = ShopHandler::class, beanMethod = "getShopProducts")
     )
     @Bean
     fun shopRoutes(shopHandler: ShopHandler) = coRouter {
@@ -43,6 +44,7 @@ class Router {
             GET("/ranking", shopHandler::getRankingShops)
             GET("/category", shopHandler::getCategoryShops)
             GET("/{id}", shopHandler::getShopDetail)
+            GET("/{id}/products", shopHandler::getShopProducts)
         }
     }
 }
