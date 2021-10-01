@@ -1,6 +1,6 @@
 package co.kr.bluewater.domain
 
-import org.junit.jupiter.api.Assertions.*
+import co.kr.bluewater.domain.user.User
 
 fun userFixture(): User {
     return User(

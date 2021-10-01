@@ -1,4 +1,4 @@
-package co.kr.bluewater.domain
+package co.kr.bluewater.domain.category
 
 interface CategoryRepository {
 
