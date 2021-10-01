@@ -1,6 +1,6 @@
 package co.kr.bluewater.domain
 
-data class Category(
+class Category(
     val code: String,
     val name: String,
     val image: String

@@ -1,5 +1,5 @@
 package co.kr.bluewater.domain
 
-data class User(
+class User(
     val location: Location
 )
