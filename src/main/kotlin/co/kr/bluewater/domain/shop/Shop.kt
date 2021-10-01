@@ -17,22 +17,13 @@ class Shop(
     val owner: Owner? = null,
     val categories: MutableSet<Category>? = null
 ) {
-    constructor(shopId: String): this(
-        shopId = shopId,
-        name = UUID.randomUUID().toString().substring(0,15),
+
+    constructor(name: String, photo: Photo, categories: MutableSet<Category>):this(
+        shopId = UUID.randomUUID().toString().substring(0,15),
+        name = name,
         rank = Rank(),
         products = mutableSetOf(),
-        photo = Photo("https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg"),
-        categories = mutableSetOf(Category("1", "패션"))
+        photo = photo,
+        categories = categories
     )
-
-    constructor(shopId: String, name: String, rank: Rank, products: MutableSet<String>): this(
-        shopId = shopId,
-        name = name,
-        rank = rank,
-        products = products,
-        photo = Photo("https://cdn.stocksnap.io/img-thumbs/960w/food-fruits_N7YQYVFWOU.jpg"),
-        categories = mutableSetOf(Category("1", "패션"))
-    )
-
 }

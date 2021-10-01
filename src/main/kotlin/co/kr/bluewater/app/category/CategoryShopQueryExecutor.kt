@@ -7,12 +7,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class CategoryShopQueryExecutor(
-    val shopRepository: ShopRepository
+    private val shopRepository: ShopRepository
 ) {
 
     suspend fun execute(param: CategoryShopQueryParam): List<Shop> {
         return shopRepository.findAllCategoryShops(param)
     }
-
-
 }
