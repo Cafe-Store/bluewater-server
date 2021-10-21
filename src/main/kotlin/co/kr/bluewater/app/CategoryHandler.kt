@@ -17,7 +17,7 @@ class CategoryHandler(
         return ServerResponse.ok().bodyValueAndAwait(result)
     }
 
-    private fun query(): List<Category> {
+    private suspend fun query(): List<Category> {
         return categoryRepository.findAll()
     }
 }
