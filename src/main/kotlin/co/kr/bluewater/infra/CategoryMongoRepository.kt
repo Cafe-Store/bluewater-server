@@ -21,7 +21,7 @@ class CategoryRepositoryImpl(
 ): CategoryRepository {
     override suspend fun findAll(): List<Category> {
         return repo.findAll()
-            .map { it.category }
+            .map { it.data }
     }
 
     @Bean
@@ -30,13 +30,13 @@ class CategoryRepositoryImpl(
             repo.deleteAll()
             repo.saveAll(
                 listOf(
-                    CategoryDocument(category = Category("1234", "음식")),
-                    CategoryDocument(category = Category("1235", "레저")),
-                    CategoryDocument(category = Category("1236", "문화")),
-                    CategoryDocument(category = Category("1237", "패션")),
-                    CategoryDocument(category = Category("1238", "뷰티")),
-                    CategoryDocument(category = Category("1239", "도서")),
-                    CategoryDocument(category = Category("1240", "취미"))
+                    CategoryDocument(data = Category("1234", "음식")),
+                    CategoryDocument(data = Category("1235", "레저")),
+                    CategoryDocument(data = Category("1236", "문화")),
+                    CategoryDocument(data = Category("1237", "패션")),
+                    CategoryDocument(data = Category("1238", "뷰티")),
+                    CategoryDocument(data = Category("1239", "도서")),
+                    CategoryDocument(data = Category("1240", "취미"))
                 )
             )
         }

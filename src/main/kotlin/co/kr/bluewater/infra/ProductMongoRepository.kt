@@ -27,7 +27,7 @@ class ProductRepositoryImpl(
             repo.deleteAll()
             repo.saveAll(
                 (1..30).map {
-                    ProductDocument(product = fixture(it.toString(), Price(it.toLong())))
+                    ProductDocument(data = fixture(it.toString(), Price(it.toLong())))
                 }.toList()
             )
         }

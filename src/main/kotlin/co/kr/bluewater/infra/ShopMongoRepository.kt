@@ -32,13 +32,13 @@ class ShopRepositoryImpl(
             repo.deleteAll()
             repo.saveAll(
                 listOf(
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture()),
-                    ShopDocument(shop = fixture())
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture()),
+                    ShopDocument(data = fixture())
                 )
             )
         }
@@ -56,22 +56,22 @@ class ShopRepositoryImpl(
     override suspend fun findAllMainShops(param: MainShopQueryParam): List<Shop> {
         return repo.findAll(PageRequest.of(param.page!!, param.size!!))
             .content
-            .map { it.shop }
+            .map { it.data }
     }
 
     override suspend fun findAllRankingShops(param: RankingShopQueryParam): List<Shop> {
         return repo.findAll()
-            .map { it.shop }
+            .map { it.data }
             .sortedByDescending {
                 it.rank
             }
     }
 
     override suspend fun findAllCategoryShops(param: CategoryShopQueryParam): List<Shop> {
-        val category = categoryRepo.findByCode(param.categoryCode).category
+        val category = categoryRepo.findByCode(param.categoryCode).data
         return repo.findAllByCategoriesContains(category, PageRequest.of(param.page!!, param.size!!))
             .content
-            .map { it.shop }
+            .map { it.data }
     }
 
 }
