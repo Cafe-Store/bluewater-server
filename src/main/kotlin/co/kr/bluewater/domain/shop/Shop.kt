@@ -13,7 +13,7 @@ class Shop(
     val name: String,
     val rank: Rank,
     val products: MutableSet<String>,
-    val photo: Photo,
+    val photos: MutableSet<ShopPhoto>,
     val owner: Owner? = null,
     val categories: MutableSet<Category>? = null
 ) {
@@ -23,7 +23,7 @@ class Shop(
         name = name,
         rank = Rank(),
         products = mutableSetOf(),
-        photo = photo,
+        photos = mutableSetOf(ShopPhoto(main = true, photo = photo)),
         categories = categories
     )
 }
