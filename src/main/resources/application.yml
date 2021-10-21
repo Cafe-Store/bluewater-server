@@ -1,2 +1,4 @@
 server:
   port: 8080
+spring.data.mongodb.database: bluewater
+spring.data.mongodb.uri: mongodb://bluewater:qWwKEDTfwOTTD9znk9y6efMh9Qwjh2HJkAHixkAg2vO28eiGuzxgatV4PN3x0L2LTtAbLIfHP4JSLTaJLNTpzw==@bluewater.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@bluewater@

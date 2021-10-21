@@ -1,6 +1,6 @@
 package co.kr.bluewater.app.mock
 
-import org.junit.jupiter.api.Assertions.*
+import co.kr.bluewater.domain.Fixture
 import org.junit.jupiter.api.Test
 
 internal class FixtureTest {
