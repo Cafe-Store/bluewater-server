@@ -9,10 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
 abstract class BaseDocument<T>(
-    @Id val id: ObjectId = ObjectId.get(),
-    val data: T,
-    val createdDate: LocalDateTime = LocalDateTime.now(),
-    val modifiedDate: LocalDateTime = LocalDateTime.now()
+    @Id var id: ObjectId = ObjectId.get(),
+    var data: T,
+    var createdDate: LocalDateTime = LocalDateTime.now(),
+    var modifiedDate: LocalDateTime = LocalDateTime.now()
 )
 
 @Document(collection = "products")
