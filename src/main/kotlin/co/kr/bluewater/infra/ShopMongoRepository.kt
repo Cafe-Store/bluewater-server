@@ -16,8 +16,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ShopMongoRepository:MongoRepository<ShopDocument, String> {
-    @Query("{'shop.categories' : { in: [?0] }}")
-    fun findAllByCategoriesContains(category: Category, page: Pageable): Page<ShopDocument>
+    @Query("{'data.categories' : ?0}")
+    fun findAllByCategory(category: Category, page: Pageable): Page<ShopDocument>
 }
 
 @Component
@@ -32,23 +32,62 @@ class ShopRepositoryImpl(
             repo.deleteAll()
             repo.saveAll(
                 listOf(
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture()),
-                    ShopDocument(data = fixture())
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1239", "도서")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1236", "문화"),
+                            Category("1239", "도서")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1234", "음식"),
+                            Category("1237", "패션")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1235", "레저")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1234", "음식"),
+                            Category("1237", "패션")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1234", "음식"),
+                            Category("1237", "패션"),
+                            Category("1238", "뷰티")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1234", "음식"),
+                            Category("1238", "뷰티")
+                        )
+                    )),
+                    ShopDocument(data = fixture(
+                        mutableSetOf(
+                            Category("1240", "취미")
+                        )
+                    ))
                 )
             )
         }
     }
 
-    private fun fixture(): Shop {
+    private fun fixture(categories: MutableSet<Category>): Shop {
         return Shop(
             name = Fixture.name(),
             photo = Photo(Fixture.uri()),
-            categories = mutableSetOf(Category("1237", "패션"))
+            categories = categories
         )
     }
 
@@ -69,7 +108,7 @@ class ShopRepositoryImpl(
 
     override suspend fun findAllCategoryShops(param: CategoryShopQueryParam): List<Shop> {
         val category = categoryRepo.findByCode(param.categoryCode).data
-        return repo.findAllByCategoriesContains(category, PageRequest.of(param.page!!, param.size!!))
+        return repo.findAllByCategory(category, PageRequest.of(param.page!!, param.size!!))
             .content
             .map { it.data }
     }
