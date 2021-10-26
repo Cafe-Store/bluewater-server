@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CategoryMongoRepository:MongoRepository<CategoryDocument, String> {
-    @Query("{'code' : ?0}")
+    @Query("{'data.code' : ?0}")
     fun findByCode(code: String): CategoryDocument
 }
 
