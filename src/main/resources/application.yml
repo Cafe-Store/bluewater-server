@@ -1,7 +1,5 @@
 server:
   port: 8080
-spring.data.mongodb.database: bluewater
-spring.data.mongodb.uri:
 logging:
   level:
     org:
@@ -10,3 +8,4 @@ logging:
           mongodb:
             core:
               MongoTemplate: DEBUG
+spring.data.mongodb.database: bluewater
