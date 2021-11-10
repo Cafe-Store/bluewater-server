@@ -17,5 +17,10 @@ jobs:
       with:
         java-version: 1.8
 
+    - name: Adding secret
+      run: |
+        printf ${{secrets.COSMOS_SECRET_URI}} >> src/main/resources/application.yml
+      shell: bash
+
     - name: Build with Gradle
       run: ./gradlew clean build
