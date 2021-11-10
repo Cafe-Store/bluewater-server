@@ -26,9 +26,7 @@ jobs:
 
     - name: Adding secret
       run: |
-        printf ${{secrets.SPRING_DATA_MONGODB_URI}}
-        printf ${{secrets.SPRING_DATA_MONGODB_URI_2}}
-        printf ${{secrets.COSMOS_SECRET_URI}} >> src/main/resources/application.yml
+        printf ${{secrets.SPRING_DATA_MONGODB_URI}} >> src/main/resources/application.yml
       shell: bash
 
     - name: Build with Gradle
