@@ -17,5 +17,13 @@ jobs:
       with:
         java-version: 1.8
 
+    - name: Adding secret
+      env:
+        SPRING_DATA_MONGODB_URI: ${{secrets.SPRING_DATA_MONGODB_URI}}
+      run: |
+        echo spring.data.mongodb.uri: \"$SPRING_DATA_MONGODB_URI\" >> src/main/resources/application.yml
+        cat src/main/resources/application.yml
+      shell: bash
+
     - name: Build with Gradle
       run: ./gradlew clean build
